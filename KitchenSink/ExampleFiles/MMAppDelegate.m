@@ -27,6 +27,7 @@
 #import "MMDrawerVisualState.h"
 #import "MMExampleDrawerVisualStateManager.h"
 #import "MMNavigationController.h"
+#import "MLSwipeDrawerController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -51,7 +52,7 @@
 		[rightSideNavController setRestorationIdentifier:@"MMExampleRightNavigationControllerRestorationKey"];
         UINavigationController * leftSideNavController = [[MMNavigationController alloc] initWithRootViewController:leftSideDrawerViewController];
 		[leftSideNavController setRestorationIdentifier:@"MMExampleLeftNavigationControllerRestorationKey"];
-        self.drawerController = [[MMDrawerController alloc]
+        self.drawerController = [[MLSwipeDrawerController alloc]
                             initWithCenterViewController:navigationController
                             leftDrawerViewController:leftSideNavController
                             rightDrawerViewController:rightSideNavController];
