@@ -30,40 +30,25 @@
 
 @interface MMExampleSideDrawerViewController()
 
-@property (nonatomic, assign) BOOL statusBarHidden;
-
 @end
 
 @implementation MMExampleSideDrawerViewController
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_HIDE_STATUSBAR_NOTIFICATION object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_SHOW_STATUSBAR_NOTIFICATION object:nil];
-    }
-    return self;
-}
-
-
-- (void)hideStatusBar
-{
-    self.statusBarHidden = YES;
-}
-
-- (void)showStatusBar
-{
-    self.statusBarHidden = NO;
-}
-
 - (BOOL)prefersStatusBarHidden
 {
-    return self.statusBarHidden;
+    NSLog(@"side hide");
+    BOOL result = ((MLSwipeDrawerController*)self.mm_drawerController).statusBarShouldBeHidden;
+    if (result) {
+        CGRect barFrame = self.navigationController.navigationBar.frame;
+        self.navigationController.navigationBar.frame = CGRectZero;
+        self.navigationController.navigationBar.frame = CGRectMake(0, 20, barFrame.size.width, barFrame.size.height);
+    }
+    return result;
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
 {
+    NSLog(@"side animate");
     return UIStatusBarAnimationSlide;
 }
 

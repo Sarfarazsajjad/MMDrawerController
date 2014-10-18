@@ -42,7 +42,6 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
 
 @interface MMExampleCenterTableViewController ()
 
-@property (nonatomic, assign) BOOL statusBarHidden;
 @end
 
 @implementation MMExampleCenterTableViewController
@@ -52,30 +51,19 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
     self = [super init];
     if (self) {
         [self setRestorationIdentifier:@"MMExampleCenterControllerRestorationKey"];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_HIDE_STATUSBAR_NOTIFICATION object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_SHOW_STATUSBAR_NOTIFICATION object:nil];
     }
     return self;
 }
 
-- (void)hideStatusBar
-{
-    self.statusBarHidden = YES;
-}
-
-- (void)showStatusBar
-{
-    self.statusBarHidden = NO;
-}
-
 - (BOOL)prefersStatusBarHidden
 {
-    return self.statusBarHidden;
+    NSLog(@"center hide");
+    return ((MLSwipeDrawerController*)self.mm_drawerController).statusBarShouldBeHidden;
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
 {
+    NSLog(@"center animte");
     return UIStatusBarAnimationSlide;
 }
 

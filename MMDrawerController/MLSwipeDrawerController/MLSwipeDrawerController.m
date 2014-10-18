@@ -16,6 +16,8 @@
 @property (nonatomic, strong) MLSwipeGestureRecognizer *leftSwipeGestureRecognizer;
 @property (nonatomic, strong) MLSwipeGestureRecognizer *rightSwipeGestureRecognizer;
 
+@property (nonatomic, assign) BOOL statusBarShouldBeHidden;
+
 @end
 
 @implementation MLSwipeDrawerController
@@ -102,19 +104,13 @@
     //记录原先的 中间navVC的导航条的frame
     
     CGRect centerBarFrame = CGRectNull;
-    CGRect sideBarFrame = CGRectNull;
     if (sideDrawerViewController) {
         if ([self.centerViewController isKindOfClass:[UINavigationController class]]) {
             centerBarFrame = ((UINavigationController*)self.centerViewController).navigationBar.frame;
         }
-        
-        if ([sideDrawerViewController isKindOfClass:[UINavigationController class]]) {
-            sideBarFrame = ((UINavigationController*)sideDrawerViewController).navigationBar.frame;
-        }
-        
-        if (!CGRectEqualToRect(centerBarFrame, CGRectNull)||!CGRectEqualToRect(sideBarFrame, CGRectNull)) {
+        if (!CGRectEqualToRect(centerBarFrame, CGRectNull)) {
             //得通知下当前需要隐藏状态栏
-            [[NSNotificationCenter defaultCenter]postNotificationName:MLSWIPEDRAWERCONTROLLER_NEED_HIDE_STATUSBAR_NOTIFICATION object:nil userInfo:nil];
+            self.statusBarShouldBeHidden = YES;
         }
     }
     
@@ -126,13 +122,6 @@
             
             navigationBar.frame = CGRectZero;
             navigationBar.frame = CGRectMake(0, 20, centerBarFrame.size.width, centerBarFrame.size.height);
-        }
-        
-        if ([sideDrawerViewController isKindOfClass:[UINavigationController class]]&&[UIApplication sharedApplication].statusBarHidden) {
-            UINavigationBar *navigationBar = ((UINavigationController*)sideDrawerViewController).navigationBar;
-            
-            navigationBar.frame = CGRectZero;
-            navigationBar.frame = CGRectMake(0, 20, sideBarFrame.size.width, sideBarFrame.size.height);
         }
     }else{
         //下面修正MM里的一个BUG，这个BUG会引起例如无左侧滑VC时候，界面不响应触摸
@@ -147,9 +136,10 @@
         return;
     }
     
-    //得通知下当前需要显示状态栏
-    [[NSNotificationCenter defaultCenter]postNotificationName:MLSWIPEDRAWERCONTROLLER_NEED_SHOW_STATUSBAR_NOTIFICATION object:nil userInfo:nil];
+    self.statusBarShouldBeHidden = NO;
     
     [super closeDrawerAnimated:animated completion:completion];
 }
+
+
 @end
