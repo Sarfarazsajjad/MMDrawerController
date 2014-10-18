@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
     MMCenterViewControllerSectionRightDrawerAnimation,
 };
 
-@interface MMExampleCenterTableViewController ()
+@interface MMExampleCenterTableViewController ()<UINavigationBarDelegate>
 
 @end
 

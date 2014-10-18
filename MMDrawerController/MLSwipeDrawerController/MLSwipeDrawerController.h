@@ -7,6 +7,7 @@
 //
 
 #import "MMDrawerController.h"
+#import "UINavigationBar+FixFrameAfterHideStatusBar.h"
 
 @class MLSwipeGestureRecognizer;
 @interface MLSwipeDrawerController : MMDrawerController

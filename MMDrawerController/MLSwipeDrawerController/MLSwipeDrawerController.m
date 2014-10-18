@@ -117,12 +117,12 @@
     [super openDrawerSide:drawerSide animated:animated velocity:velocity animationOptions:options completion:completion];
     
     if (sideDrawerViewController) {
-        if ([self.centerViewController isKindOfClass:[UINavigationController class]]&&[UIApplication sharedApplication].statusBarHidden) {
-            UINavigationBar *navigationBar = ((UINavigationController*)self.centerViewController).navigationBar;
-            
-            navigationBar.frame = CGRectZero;
-            navigationBar.frame = CGRectMake(0, 20, centerBarFrame.size.width, centerBarFrame.size.height);
-        }
+//        if ([self.centerViewController isKindOfClass:[UINavigationController class]]&&[UIApplication sharedApplication].statusBarHidden) {
+//            UINavigationBar *navigationBar = ((UINavigationController*)self.centerViewController).navigationBar;
+//            
+//            navigationBar.frame = CGRectZero;
+//            navigationBar.frame = CGRectMake(0, 20, centerBarFrame.size.width, centerBarFrame.size.height);
+//        }
     }else{
         //下面修正MM里的一个BUG，这个BUG会引起例如无左侧滑VC时候，界面不响应触摸
         [self setAnimatingDrawer:NO];

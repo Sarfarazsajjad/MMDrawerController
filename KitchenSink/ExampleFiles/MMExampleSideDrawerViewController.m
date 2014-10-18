@@ -38,11 +38,11 @@
 {
     NSLog(@"side hide");
     BOOL result = ((MLSwipeDrawerController*)self.mm_drawerController).statusBarShouldBeHidden;
-    if (result) {
-        CGRect barFrame = self.navigationController.navigationBar.frame;
-        self.navigationController.navigationBar.frame = CGRectZero;
-        self.navigationController.navigationBar.frame = CGRectMake(0, 20, barFrame.size.width, barFrame.size.height);
-    }
+//    if (result) {
+//        CGRect barFrame = self.navigationController.navigationBar.frame;
+//        self.navigationController.navigationBar.frame = CGRectZero;
+//        self.navigationController.navigationBar.frame = CGRectMake(0, 20, barFrame.size.width, barFrame.size.height);
+//    }
     return result;
 }
 

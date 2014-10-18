@@ -37,6 +37,7 @@
 		29EEA51B17998320006D68B7 /* MMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EEA51A17998320006D68B7 /* MMNavigationController.m */; };
 		29EEA51E1799923E006D68B7 /* MMExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EEA51D1799923E006D68B7 /* MMExampleViewController.m */; };
 		29F6163B172AC22A00B31282 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F6163A172AC22A00B31282 /* MMDrawerBarButtonItem.m */; };
+		36A2E48F19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A2E48E19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.m */; };
 		36C04EAF19F2415C00CA5968 /* MLSwipeDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C04EAE19F2415C00CA5968 /* MLSwipeDrawerController.m */; };
 		36C04EB319F2485400CA5968 /* MLSwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C04EB219F2485400CA5968 /* MLSwipeGestureRecognizer.m */; };
 		36C34C5919F25AF700D5F915 /* MLSwipeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C34C5419F25AF700D5F915 /* MLSwipeScrollView.m */; };
@@ -95,6 +96,8 @@
 		29EEA51D1799923E006D68B7 /* MMExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMExampleViewController.m; sourceTree = "<group>"; };
 		29F61639172AC22A00B31282 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		29F6163A172AC22A00B31282 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		36A2E48D19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+FixFrameAfterHideStatusBar.h"; sourceTree = "<group>"; };
+		36A2E48E19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+FixFrameAfterHideStatusBar.m"; sourceTree = "<group>"; };
 		36C04EAD19F2415C00CA5968 /* MLSwipeDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeDrawerController.h; sourceTree = "<group>"; };
 		36C04EAE19F2415C00CA5968 /* MLSwipeDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeDrawerController.m; sourceTree = "<group>"; };
 		36C04EB019F245F300CA5968 /* MMDrawerController+MLSwipeSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+MLSwipeSubclass.h"; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 				36C04EB019F245F300CA5968 /* MMDrawerController+MLSwipeSubclass.h */,
 				36C04EB119F2485400CA5968 /* MLSwipeGestureRecognizer.h */,
 				36C04EB219F2485400CA5968 /* MLSwipeGestureRecognizer.m */,
+				36A2E48D19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.h */,
+				36A2E48E19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.m */,
 			);
 			path = MLSwipeDrawerController;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 				36C04EAF19F2415C00CA5968 /* MLSwipeDrawerController.m in Sources */,
 				294A1D2117199537005BF6B1 /* MMAppDelegate.m in Sources */,
 				294A1D301719982B005BF6B1 /* MMDrawerController.m in Sources */,
+				36A2E48F19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.m in Sources */,
 				36C34C5919F25AF700D5F915 /* MLSwipeScrollView.m in Sources */,
 				294A1D3317199844005BF6B1 /* UIViewController+MMDrawerController.m in Sources */,
 				29F6163B172AC22A00B31282 /* MMDrawerBarButtonItem.m in Sources */,
