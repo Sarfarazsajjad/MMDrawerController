@@ -14,6 +14,7 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
 @interface MMDrawerController (MLSwipeSubclass)
 
 @property (nonatomic, copy) MMDrawerGestureCompletionBlock gestureCompletion;
+@property (nonatomic, assign, getter = isAnimatingDrawer) BOOL animatingDrawer;
 
 - (UIViewController*)sideDrawerViewControllerForSide:(MMDrawerSide)drawerSide;
 

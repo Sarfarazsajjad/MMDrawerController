@@ -72,11 +72,13 @@
             toOpenSide = MMDrawerSideLeft;
         }
         if (toOpenSide!=MMDrawerSideNone) {
-            [self openDrawerSide:toOpenSide animated:YES completion:^(BOOL finished) {
-                if(self.gestureCompletion){
-                    self.gestureCompletion(self, swipeGesture);
-                }
-            }];
+            if ([self sideDrawerViewControllerForSide:toOpenSide]) { //尽量不做无用的工作
+                [self openDrawerSide:toOpenSide animated:YES completion:^(BOOL finished) {
+                    if(self.gestureCompletion){
+                        self.gestureCompletion(self, swipeGesture);
+                    }
+                }];
+            }
         }
     }else{
         if ((UISwipeGestureRecognizerDirectionLeft == swipeGesture.direction&&self.openSide==MMDrawerSideLeft)||(UISwipeGestureRecognizerDirectionRight == swipeGesture.direction&&self.openSide==MMDrawerSideRight)) {
@@ -89,14 +91,65 @@
     }
 }
 
-//下面修正MM里的一个BUG，这个BUG会引起例如无左侧滑VC时候，界面不响应触摸
 -(void)openDrawerSide:(MMDrawerSide)drawerSide animated:(BOOL)animated velocity:(CGFloat)velocity animationOptions:(UIViewAnimationOptions)options completion:(void (^)(BOOL))completion
 {
-    [super openDrawerSide:drawerSide animated:animated velocity:velocity animationOptions:options completion:completion];
+    if (self.isAnimatingDrawer) {
+        [super openDrawerSide:drawerSide animated:animated velocity:velocity animationOptions:options completion:completion];
+        return;
+    }
     
     UIViewController * sideDrawerViewController = [self sideDrawerViewControllerForSide:drawerSide];
-    if (!sideDrawerViewController) {
+    //记录原先的 中间navVC的导航条的frame
+    
+    CGRect centerBarFrame = CGRectNull;
+    CGRect sideBarFrame = CGRectNull;
+    if (sideDrawerViewController) {
+        if ([self.centerViewController isKindOfClass:[UINavigationController class]]) {
+            centerBarFrame = ((UINavigationController*)self.centerViewController).navigationBar.frame;
+        }
+        
+        if ([sideDrawerViewController isKindOfClass:[UINavigationController class]]) {
+            sideBarFrame = ((UINavigationController*)sideDrawerViewController).navigationBar.frame;
+        }
+        
+        if (!CGRectEqualToRect(centerBarFrame, CGRectNull)||!CGRectEqualToRect(sideBarFrame, CGRectNull)) {
+            //得通知下当前需要隐藏状态栏
+            [[NSNotificationCenter defaultCenter]postNotificationName:MLSWIPEDRAWERCONTROLLER_NEED_HIDE_STATUSBAR_NOTIFICATION object:nil userInfo:nil];
+        }
+    }
+    
+    [super openDrawerSide:drawerSide animated:animated velocity:velocity animationOptions:options completion:completion];
+    
+    if (sideDrawerViewController) {
+        if ([self.centerViewController isKindOfClass:[UINavigationController class]]&&[UIApplication sharedApplication].statusBarHidden) {
+            UINavigationBar *navigationBar = ((UINavigationController*)self.centerViewController).navigationBar;
+            
+            navigationBar.frame = CGRectZero;
+            navigationBar.frame = CGRectMake(0, 20, centerBarFrame.size.width, centerBarFrame.size.height);
+        }
+        
+        if ([sideDrawerViewController isKindOfClass:[UINavigationController class]]&&[UIApplication sharedApplication].statusBarHidden) {
+            UINavigationBar *navigationBar = ((UINavigationController*)sideDrawerViewController).navigationBar;
+            
+            navigationBar.frame = CGRectZero;
+            navigationBar.frame = CGRectMake(0, 20, sideBarFrame.size.width, sideBarFrame.size.height);
+        }
+    }else{
+        //下面修正MM里的一个BUG，这个BUG会引起例如无左侧滑VC时候，界面不响应触摸
         [self setAnimatingDrawer:NO];
     }
+}
+
+- (void)closeDrawerAnimated:(BOOL)animated completion:(void (^)(BOOL))completion
+{
+    if (self.isAnimatingDrawer) {
+        [super closeDrawerAnimated:animated completion:completion];
+        return;
+    }
+    
+    //得通知下当前需要显示状态栏
+    [[NSNotificationCenter defaultCenter]postNotificationName:MLSWIPEDRAWERCONTROLLER_NEED_SHOW_STATUSBAR_NOTIFICATION object:nil userInfo:nil];
+    
+    [super closeDrawerAnimated:animated completion:completion];
 }
 @end

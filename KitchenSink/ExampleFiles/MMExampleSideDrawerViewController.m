@@ -26,7 +26,46 @@
 #import "MMLogoView.h"
 #import "MMNavigationController.h"
 
+#import "MLSwipeDrawerController.h"
+
+@interface MMExampleSideDrawerViewController()
+
+@property (nonatomic, assign) BOOL statusBarHidden;
+
+@end
+
 @implementation MMExampleSideDrawerViewController
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_HIDE_STATUSBAR_NOTIFICATION object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_SHOW_STATUSBAR_NOTIFICATION object:nil];
+    }
+    return self;
+}
+
+
+- (void)hideStatusBar
+{
+    self.statusBarHidden = YES;
+}
+
+- (void)showStatusBar
+{
+    self.statusBarHidden = NO;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return self.statusBarHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationSlide;
+}
 
 - (void)viewDidLoad
 {

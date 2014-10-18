@@ -29,6 +29,7 @@
 #import "MMExampleRightSideDrawerViewController.h"
 #import "MMNavigationController.h"
 #import "MLSwipeTableView.h"
+#import "MLSwipeDrawerController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -41,6 +42,7 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
 
 @interface MMExampleCenterTableViewController ()
 
+@property (nonatomic, assign) BOOL statusBarHidden;
 @end
 
 @implementation MMExampleCenterTableViewController
@@ -50,8 +52,31 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
     self = [super init];
     if (self) {
         [self setRestorationIdentifier:@"MMExampleCenterControllerRestorationKey"];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_HIDE_STATUSBAR_NOTIFICATION object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatusBar) name:MLSWIPEDRAWERCONTROLLER_NEED_SHOW_STATUSBAR_NOTIFICATION object:nil];
     }
     return self;
+}
+
+- (void)hideStatusBar
+{
+    self.statusBarHidden = YES;
+}
+
+- (void)showStatusBar
+{
+    self.statusBarHidden = NO;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return self.statusBarHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationSlide;
 }
 
 - (void)viewDidLoad
@@ -63,6 +88,12 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
     [self.tableView setDataSource:self];
     [self.view addSubview:self.tableView];
     [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    
+#warning 这里先简单整理下
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    UIEdgeInsets inset = self.tableView.contentInset;
+    inset.top = 64.0f;
+    self.tableView.contentInset = inset;
     
     UITapGestureRecognizer * doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
     [doubleTap setNumberOfTapsRequired:2];
