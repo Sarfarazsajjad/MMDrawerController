@@ -8,6 +8,10 @@
 
 #import "MMDrawerController.h"
 
+@class MLSwipeGestureRecognizer;
 @interface MLSwipeDrawerController : MMDrawerController
+
+@property (nonatomic, strong, readonly) MLSwipeGestureRecognizer *leftSwipeGestureRecognizer;
+@property (nonatomic, strong, readonly) MLSwipeGestureRecognizer *rightSwipeGestureRecognizer;
 
 @end

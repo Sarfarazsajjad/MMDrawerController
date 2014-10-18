@@ -28,6 +28,7 @@
 #import "MMExampleLeftSideDrawerViewController.h"
 #import "MMExampleRightSideDrawerViewController.h"
 #import "MMNavigationController.h"
+#import "MLSwipeTableView.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -57,7 +58,7 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
 {
     [super viewDidLoad];
     
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    _tableView = [[MLSwipeTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
     [self.view addSubview:self.tableView];

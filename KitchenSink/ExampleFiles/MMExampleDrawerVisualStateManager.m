@@ -30,8 +30,8 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedManager = [[MMExampleDrawerVisualStateManager alloc] init];
-        [_sharedManager setLeftDrawerAnimationType:MMDrawerAnimationTypeParallax];
-        [_sharedManager setRightDrawerAnimationType:MMDrawerAnimationTypeParallax];
+        [_sharedManager setLeftDrawerAnimationType:MMDrawerAnimationTypeNone];
+        [_sharedManager setRightDrawerAnimationType:MMDrawerAnimationTypeNone];
     });
     
     return _sharedManager;

@@ -9,8 +9,12 @@
 #import "MLSwipeDrawerController.h"
 #import "MMDrawerController+MLSwipeSubclass.h"
 #import "MMDrawerController+Subclass.h"
+#import "MLSwipeGestureRecognizer.h"
 
 @interface MLSwipeDrawerController ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) MLSwipeGestureRecognizer *leftSwipeGestureRecognizer;
+@property (nonatomic, strong) MLSwipeGestureRecognizer *rightSwipeGestureRecognizer;
 
 @end
 
@@ -32,15 +36,17 @@
     [tap setDelegate:self];
     [self.view addGestureRecognizer:tap];
     
-    UISwipeGestureRecognizer * leftSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureCallback:)];
+    MLSwipeGestureRecognizer * leftSwipe = [[MLSwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureCallback:)];
     [leftSwipe setDirection:UISwipeGestureRecognizerDirectionLeft];
     [leftSwipe setDelegate:self];
     [self.view addGestureRecognizer:leftSwipe];
+    self.leftSwipeGestureRecognizer = leftSwipe;
     
-    UISwipeGestureRecognizer * rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureCallback:)];
+    MLSwipeGestureRecognizer * rightSwipe = [[MLSwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureCallback:)];
     [rightSwipe setDirection:UISwipeGestureRecognizerDirectionRight];
     [rightSwipe setDelegate:self];
     [self.view addGestureRecognizer:rightSwipe];
+    self.rightSwipeGestureRecognizer = rightSwipe;
     
     self.openDrawerGestureModeMask |= MMOpenDrawerGestureModeCustom;
     self.closeDrawerGestureModeMask |= MMCloseDrawerGestureModeCustom;

@@ -38,6 +38,10 @@
 		29EEA51E1799923E006D68B7 /* MMExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EEA51D1799923E006D68B7 /* MMExampleViewController.m */; };
 		29F6163B172AC22A00B31282 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F6163A172AC22A00B31282 /* MMDrawerBarButtonItem.m */; };
 		36C04EAF19F2415C00CA5968 /* MLSwipeDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C04EAE19F2415C00CA5968 /* MLSwipeDrawerController.m */; };
+		36C04EB319F2485400CA5968 /* MLSwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C04EB219F2485400CA5968 /* MLSwipeGestureRecognizer.m */; };
+		36C34C5919F25AF700D5F915 /* MLSwipeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C34C5419F25AF700D5F915 /* MLSwipeScrollView.m */; };
+		36C34C5A19F25AF700D5F915 /* MLSwipeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C34C5619F25AF700D5F915 /* MLSwipeTableView.m */; };
+		36C34C5B19F25AF700D5F915 /* MLSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C34C5819F25AF700D5F915 /* MLSwipeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +98,14 @@
 		36C04EAD19F2415C00CA5968 /* MLSwipeDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeDrawerController.h; sourceTree = "<group>"; };
 		36C04EAE19F2415C00CA5968 /* MLSwipeDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeDrawerController.m; sourceTree = "<group>"; };
 		36C04EB019F245F300CA5968 /* MMDrawerController+MLSwipeSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+MLSwipeSubclass.h"; sourceTree = "<group>"; };
+		36C04EB119F2485400CA5968 /* MLSwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeGestureRecognizer.h; sourceTree = "<group>"; };
+		36C04EB219F2485400CA5968 /* MLSwipeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeGestureRecognizer.m; sourceTree = "<group>"; };
+		36C34C5319F25AF700D5F915 /* MLSwipeScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeScrollView.h; sourceTree = "<group>"; };
+		36C34C5419F25AF700D5F915 /* MLSwipeScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeScrollView.m; sourceTree = "<group>"; };
+		36C34C5519F25AF700D5F915 /* MLSwipeTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeTableView.h; sourceTree = "<group>"; };
+		36C34C5619F25AF700D5F915 /* MLSwipeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeTableView.m; sourceTree = "<group>"; };
+		36C34C5719F25AF700D5F915 /* MLSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeTableViewController.h; sourceTree = "<group>"; };
+		36C34C5819F25AF700D5F915 /* MLSwipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeTableViewController.m; sourceTree = "<group>"; };
 		462C592D1757C16B006C1D6F /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,11 +266,27 @@
 		36C04EAC19F2413B00CA5968 /* MLSwipeDrawerController */ = {
 			isa = PBXGroup;
 			children = (
+				36C34C5219F25AF700D5F915 /* MLSwipeDrawerControllerAddition */,
 				36C04EAD19F2415C00CA5968 /* MLSwipeDrawerController.h */,
 				36C04EAE19F2415C00CA5968 /* MLSwipeDrawerController.m */,
 				36C04EB019F245F300CA5968 /* MMDrawerController+MLSwipeSubclass.h */,
+				36C04EB119F2485400CA5968 /* MLSwipeGestureRecognizer.h */,
+				36C04EB219F2485400CA5968 /* MLSwipeGestureRecognizer.m */,
 			);
 			path = MLSwipeDrawerController;
+			sourceTree = "<group>";
+		};
+		36C34C5219F25AF700D5F915 /* MLSwipeDrawerControllerAddition */ = {
+			isa = PBXGroup;
+			children = (
+				36C34C5319F25AF700D5F915 /* MLSwipeScrollView.h */,
+				36C34C5419F25AF700D5F915 /* MLSwipeScrollView.m */,
+				36C34C5519F25AF700D5F915 /* MLSwipeTableView.h */,
+				36C34C5619F25AF700D5F915 /* MLSwipeTableView.m */,
+				36C34C5719F25AF700D5F915 /* MLSwipeTableViewController.h */,
+				36C34C5819F25AF700D5F915 /* MLSwipeTableViewController.m */,
+			);
+			path = MLSwipeDrawerControllerAddition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,15 +363,19 @@
 				36C04EAF19F2415C00CA5968 /* MLSwipeDrawerController.m in Sources */,
 				294A1D2117199537005BF6B1 /* MMAppDelegate.m in Sources */,
 				294A1D301719982B005BF6B1 /* MMDrawerController.m in Sources */,
+				36C34C5919F25AF700D5F915 /* MLSwipeScrollView.m in Sources */,
 				294A1D3317199844005BF6B1 /* UIViewController+MMDrawerController.m in Sources */,
 				29F6163B172AC22A00B31282 /* MMDrawerBarButtonItem.m in Sources */,
 				29C28487172B07C10089E872 /* MMExampleCenterTableViewController.m in Sources */,
+				36C34C5B19F25AF700D5F915 /* MLSwipeTableViewController.m in Sources */,
 				29C2848D172EB1710089E872 /* MMExampleSideDrawerViewController.m in Sources */,
 				29848B5F173015D3006D8502 /* MMExampleLeftSideDrawerViewController.m in Sources */,
 				29EEA51E1799923E006D68B7 /* MMExampleViewController.m in Sources */,
 				29848B6517301793006D8502 /* MMExampleRightSideDrawerViewController.m in Sources */,
 				29CFD5EC173192D100E1FABB /* MMDrawerVisualState.m in Sources */,
+				36C34C5A19F25AF700D5F915 /* MLSwipeTableView.m in Sources */,
 				29EEA51B17998320006D68B7 /* MMNavigationController.m in Sources */,
+				36C04EB319F2485400CA5968 /* MLSwipeGestureRecognizer.m in Sources */,
 				29CFD5EF1731C7DB00E1FABB /* MMExampleDrawerVisualStateManager.m in Sources */,
 				297EA0051738112A00472DF4 /* MMTableViewCell.m in Sources */,
 				2969636C1738141500281B9A /* MMSideDrawerTableViewCell.m in Sources */,
