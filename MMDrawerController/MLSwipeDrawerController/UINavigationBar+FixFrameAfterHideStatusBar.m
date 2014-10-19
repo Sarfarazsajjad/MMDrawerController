@@ -46,28 +46,67 @@ void Swizzle(Class c, SEL origSEL, SEL newSEL)
     CGSize rsize = [self hook_sizeThatFits:size];
     if ([UIApplication sharedApplication].statusBarHidden) {
         rsize.height+=20.0f;
-        
     }
     
-    NSLog(@"%@",NSStringFromCGSize(rsize));
+//    NSLog(@"%@",NSStringFromCGSize(rsize));
     
     //遍历下动画看看
-    NSLog(@"%@",self.layer.animationKeys);
+    NSLog(@"1.%@",self.layer.animationKeys);
     [self.layer removeAnimationForKey:@"position"];
     [self.layer removeAnimationForKey:@"bounds"];
     return rsize;
 }
 
+- (void)hook_layoutSubviews
+{
+    [self hook_layoutSubviews];
+    CGRect frame = self.frame;
+    if (frame.origin.y==0) {
+        frame.origin.y=20.0f;
+        self.frame = frame;
+//        return;
+        
+        [self.layer removeAllAnimations];
+        for (UIView *view in [self subviews]) {
+            if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
+                for (UIView *subView in [view subviews]) {
+                    [subView.layer removeAllAnimations];
+                    if ([subView isKindOfClass:NSClassFromString(@"_UIBackdropView")]) {
+                        for (UIView *subView2 in [subView subviews]) {
+                            [subView2.layer removeAllAnimations];
+                        }
+                    }
+                }
+                
+                [view.layer removeAllAnimations];
+                
+                CGRect bframe = view.frame;
+                bframe.origin.y -= 20.0f;
+                bframe.size.height += 20.0f;
+                view.frame = bframe;
+                
+                break;
+            }
+        }
+    }
+    
+    NSLog(@"当前:%@ frame为%@",self,NSStringFromCGRect(self.frame));
+    
+//    return;
+}
+
 - (void)hook_setFrame:(CGRect)frame
 {
-//    NSLog(@"来了%@",NSStringFromCGRect(frame));
     [self hook_setFrame:frame];
+    NSLog(@"frame修改为%@",NSStringFromCGRect(frame));
 }
 
 + (void)load
 {
-    Swizzle(self, @selector(sizeThatFits:), @selector(hook_sizeThatFits:));
+//    Swizzle(self, @selector(sizeThatFits:), @selector(hook_sizeThatFits:));
+//    
+    Swizzle(self, @selector(layoutSubviews), @selector(hook_layoutSubviews));
     
-    Swizzle(self, @selector(setFrame:), @selector(hook_setFrame:));
+//    Swizzle(self, @selector(setFrame:), @selector(hook_setFrame:));
 }
 @end

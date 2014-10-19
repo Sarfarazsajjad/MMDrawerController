@@ -71,6 +71,8 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
 {
     [super viewDidLoad];
     
+//    self.navigationController.navigationBar.clipsToBounds = YES;
+    
     _tableView = [[MLSwipeTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
