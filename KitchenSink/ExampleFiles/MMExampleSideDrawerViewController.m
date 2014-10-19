@@ -63,6 +63,13 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     }
     
+    
+#warning 这里先简单整理下
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    UIEdgeInsets inset = self.tableView.contentInset;
+    inset.top = 64.0f;
+    self.tableView.contentInset = inset;
+    
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
     [self.view addSubview:self.tableView];

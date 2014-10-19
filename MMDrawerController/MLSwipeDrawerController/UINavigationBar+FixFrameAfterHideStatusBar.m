@@ -40,73 +40,44 @@ void Swizzle(Class c, SEL origSEL, SEL newSEL)
 
 @implementation UINavigationBar (FixFrameAfterHideStatusBar)
 
-
-- (CGSize)hook_sizeThatFits:(CGSize)size
-{
-    CGSize rsize = [self hook_sizeThatFits:size];
-    if ([UIApplication sharedApplication].statusBarHidden) {
-        rsize.height+=20.0f;
-    }
-    
-//    NSLog(@"%@",NSStringFromCGSize(rsize));
-    
-    //遍历下动画看看
-    NSLog(@"1.%@",self.layer.animationKeys);
-    [self.layer removeAnimationForKey:@"position"];
-    [self.layer removeAnimationForKey:@"bounds"];
-    return rsize;
-}
-
 - (void)hook_layoutSubviews
 {
     [self hook_layoutSubviews];
+    
     CGRect frame = self.frame;
-    if (frame.origin.y==0) {
-        frame.origin.y=20.0f;
-        self.frame = frame;
-//        return;
+    if (frame.origin.y==0&&[UIApplication sharedApplication].statusBarHidden) {
         
-        [self.layer removeAllAnimations];
+        frame.origin.y = 20.0f;
+        self.frame = frame;
+
+        [self.layer removeAllAnimations]; //这句其实也就只有ios8需要
         for (UIView *view in [self subviews]) {
             if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
-                for (UIView *subView in [view subviews]) {
-                    [subView.layer removeAllAnimations];
-                    if ([subView isKindOfClass:NSClassFromString(@"_UIBackdropView")]) {
-                        for (UIView *subView2 in [subView subviews]) {
-                            [subView2.layer removeAllAnimations];
-                        }
-                    }
-                }
-                
-                [view.layer removeAllAnimations];
+//                for (UIView *subView in [view subviews]) {
+//                    [subView.layer removeAllAnimations];
+//                    if ([subView isKindOfClass:NSClassFromString(@"_UIBackdropView")]) {
+//                        for (UIView *subView2 in [subView subviews]) {
+//                            [subView2.layer removeAllAnimations];
+//                        }
+//                    }
+//                }
+//                [view.layer removeAllAnimations];
                 
                 CGRect bframe = view.frame;
-                bframe.origin.y -= 20.0f;
-                bframe.size.height += 20.0f;
-                view.frame = bframe;
+                if (bframe.origin.y == 0) {
+                    bframe.origin.y -= 20.0f;
+                    bframe.size.height += 20.0f;
+                    view.frame = bframe;
+                }
                 
                 break;
             }
         }
     }
-    
-    NSLog(@"当前:%@ frame为%@",self,NSStringFromCGRect(self.frame));
-    
-//    return;
-}
-
-- (void)hook_setFrame:(CGRect)frame
-{
-    [self hook_setFrame:frame];
-    NSLog(@"frame修改为%@",NSStringFromCGRect(frame));
 }
 
 + (void)load
 {
-//    Swizzle(self, @selector(sizeThatFits:), @selector(hook_sizeThatFits:));
-//    
     Swizzle(self, @selector(layoutSubviews), @selector(hook_layoutSubviews));
-    
-//    Swizzle(self, @selector(setFrame:), @selector(hook_setFrame:));
 }
 @end
