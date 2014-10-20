@@ -57,13 +57,11 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
 
 - (BOOL)prefersStatusBarHidden
 {
-    NSLog(@"center hide");
     return ((MLSwipeDrawerController*)self.mm_drawerController).statusBarShouldBeHidden;
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
 {
-    NSLog(@"center animte");
     return UIStatusBarAnimationSlide;
 }
 
@@ -79,10 +77,9 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
     [self.view addSubview:self.tableView];
     [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     
-#warning 这里先简单整理下
     self.automaticallyAdjustsScrollViewInsets = NO;
     UIEdgeInsets inset = self.tableView.contentInset;
-    inset.top = 64.0f;
+    inset.top = self.navigationController.navigationBar.intrinsicContentSize.height + 20.0f;
     self.tableView.contentInset = inset;
     
     UITapGestureRecognizer * doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];

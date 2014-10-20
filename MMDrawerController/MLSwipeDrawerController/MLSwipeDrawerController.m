@@ -101,29 +101,14 @@
     }
     
     UIViewController * sideDrawerViewController = [self sideDrawerViewControllerForSide:drawerSide];
-    //记录原先的 中间navVC的导航条的frame
-    
-    CGRect centerBarFrame = CGRectNull;
     if (sideDrawerViewController) {
-        if ([self.centerViewController isKindOfClass:[UINavigationController class]]) {
-            centerBarFrame = ((UINavigationController*)self.centerViewController).navigationBar.frame;
-        }
-        if (!CGRectEqualToRect(centerBarFrame, CGRectNull)) {
-            //得通知下当前需要隐藏状态栏
-            self.statusBarShouldBeHidden = YES;
-        }
+        //得通知下当前需要隐藏状态栏
+        self.statusBarShouldBeHidden = YES;
     }
     
     [super openDrawerSide:drawerSide animated:animated velocity:velocity animationOptions:options completion:completion];
     
-    if (sideDrawerViewController) {
-//        if ([self.centerViewController isKindOfClass:[UINavigationController class]]&&[UIApplication sharedApplication].statusBarHidden) {
-//            UINavigationBar *navigationBar = ((UINavigationController*)self.centerViewController).navigationBar;
-//            
-//            navigationBar.frame = CGRectZero;
-//            navigationBar.frame = CGRectMake(0, 20, centerBarFrame.size.width, centerBarFrame.size.height);
-//        }
-    }else{
+    if (!sideDrawerViewController) {
         //下面修正MM里的一个BUG，这个BUG会引起例如无左侧滑VC时候，界面不响应触摸
         [self setAnimatingDrawer:NO];
     }
@@ -140,6 +125,5 @@
     
     [super closeDrawerAnimated:animated completion:completion];
 }
-
 
 @end

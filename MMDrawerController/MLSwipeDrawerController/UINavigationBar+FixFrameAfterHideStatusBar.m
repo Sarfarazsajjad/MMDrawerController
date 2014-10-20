@@ -11,7 +11,7 @@
 
 
 //静态就交换静态，实例方法就交换实例方法
-void Swizzle(Class c, SEL origSEL, SEL newSEL)
+void FixFrameAfterHideStatusBar__Swizzle(Class c, SEL origSEL, SEL newSEL)
 {
     //获取实例方法
     Method origMethod = class_getInstanceMethod(c, origSEL);
@@ -47,10 +47,12 @@ void Swizzle(Class c, SEL origSEL, SEL newSEL)
     CGRect frame = self.frame;
     if (frame.origin.y==0&&[UIApplication sharedApplication].statusBarHidden) {
         
+        //When statusBar is hidden, origin.y whould be set to 0.0f,
+        //We reset it to original.
         frame.origin.y = 20.0f;
         self.frame = frame;
 
-        [self.layer removeAllAnimations]; //这句其实也就只有ios8需要
+        [self.layer removeAllAnimations]; //this is necessary for iOS 8
         for (UIView *view in [self subviews]) {
             if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
 //                for (UIView *subView in [view subviews]) {
@@ -78,6 +80,7 @@ void Swizzle(Class c, SEL origSEL, SEL newSEL)
 
 + (void)load
 {
-    Swizzle(self, @selector(layoutSubviews), @selector(hook_layoutSubviews));
+    FixFrameAfterHideStatusBar__Swizzle(self, @selector(layoutSubviews), @selector(hook_layoutSubviews));
 }
+
 @end

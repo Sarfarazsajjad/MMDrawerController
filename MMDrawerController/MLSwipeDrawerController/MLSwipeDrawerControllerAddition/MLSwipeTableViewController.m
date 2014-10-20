@@ -16,4 +16,11 @@
     self.tableView = [MLSwipeTableView new];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
 @end

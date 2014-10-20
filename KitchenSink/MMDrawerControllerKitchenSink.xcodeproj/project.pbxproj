@@ -43,6 +43,7 @@
 		36C34C5919F25AF700D5F915 /* MLSwipeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C34C5419F25AF700D5F915 /* MLSwipeScrollView.m */; };
 		36C34C5A19F25AF700D5F915 /* MLSwipeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C34C5619F25AF700D5F915 /* MLSwipeTableView.m */; };
 		36C34C5B19F25AF700D5F915 /* MLSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C34C5819F25AF700D5F915 /* MLSwipeTableViewController.m */; };
+		36DBDCFA19F509B600AD681D /* MLSwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DBDCF919F509B600AD681D /* MLSwipeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,8 @@
 		36C34C5619F25AF700D5F915 /* MLSwipeTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeTableView.m; sourceTree = "<group>"; };
 		36C34C5719F25AF700D5F915 /* MLSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeTableViewController.h; sourceTree = "<group>"; };
 		36C34C5819F25AF700D5F915 /* MLSwipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeTableViewController.m; sourceTree = "<group>"; };
+		36DBDCF819F509B600AD681D /* MLSwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSwipeViewController.h; sourceTree = "<group>"; };
+		36DBDCF919F509B600AD681D /* MLSwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSwipeViewController.m; sourceTree = "<group>"; };
 		462C592D1757C16B006C1D6F /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -290,6 +293,8 @@
 				36C34C5619F25AF700D5F915 /* MLSwipeTableView.m */,
 				36C34C5719F25AF700D5F915 /* MLSwipeTableViewController.h */,
 				36C34C5819F25AF700D5F915 /* MLSwipeTableViewController.m */,
+				36DBDCF819F509B600AD681D /* MLSwipeViewController.h */,
+				36DBDCF919F509B600AD681D /* MLSwipeViewController.m */,
 			);
 			path = MLSwipeDrawerControllerAddition;
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 			files = (
 				294A1D1D17199537005BF6B1 /* main.m in Sources */,
 				36C04EAF19F2415C00CA5968 /* MLSwipeDrawerController.m in Sources */,
+				36DBDCFA19F509B600AD681D /* MLSwipeViewController.m in Sources */,
 				294A1D2117199537005BF6B1 /* MMAppDelegate.m in Sources */,
 				294A1D301719982B005BF6B1 /* MMDrawerController.m in Sources */,
 				36A2E48F19F279490046B5F8 /* UINavigationBar+FixFrameAfterHideStatusBar.m in Sources */,

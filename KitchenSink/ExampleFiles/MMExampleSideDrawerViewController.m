@@ -27,6 +27,7 @@
 #import "MMNavigationController.h"
 
 #import "MLSwipeDrawerController.h"
+#import "MLSwipeTableView.h"
 
 @interface MMExampleSideDrawerViewController()
 
@@ -36,19 +37,11 @@
 
 - (BOOL)prefersStatusBarHidden
 {
-    NSLog(@"side hide");
-    BOOL result = ((MLSwipeDrawerController*)self.mm_drawerController).statusBarShouldBeHidden;
-//    if (result) {
-//        CGRect barFrame = self.navigationController.navigationBar.frame;
-//        self.navigationController.navigationBar.frame = CGRectZero;
-//        self.navigationController.navigationBar.frame = CGRectMake(0, 20, barFrame.size.width, barFrame.size.height);
-//    }
-    return result;
+    return ((MLSwipeDrawerController*)self.mm_drawerController).statusBarShouldBeHidden;
 }
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
 {
-    NSLog(@"side animate");
     return UIStatusBarAnimationSlide;
 }
 
@@ -57,17 +50,15 @@
     [super viewDidLoad];
 
     if(OSVersionIsAtLeastiOS7()){
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[MLSwipeTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     }
     else {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     }
     
-    
-#warning 这里先简单整理下
     self.automaticallyAdjustsScrollViewInsets = NO;
     UIEdgeInsets inset = self.tableView.contentInset;
-    inset.top = 64.0f;
+    inset.top = self.navigationController.navigationBar.intrinsicContentSize.height + 20.0f;
     self.tableView.contentInset = inset;
     
     [self.tableView setDelegate:self];
