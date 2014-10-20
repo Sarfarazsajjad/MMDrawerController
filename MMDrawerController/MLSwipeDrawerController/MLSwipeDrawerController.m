@@ -126,4 +126,11 @@
     [super closeDrawerAnimated:animated completion:completion];
 }
 
+
+#pragma mark - other
+-(void)setShowsStatusBarBackgroundView:(BOOL)showsDummyStatusBar
+{
+    NSAssert(NO, @"抱歉，不支持设置这个方法");
+}
+
 @end

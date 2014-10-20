@@ -20,4 +20,6 @@ typedef void (^MMDrawerGestureCompletionBlock)(MMDrawerController * drawerContro
 
 -(void)setAnimatingDrawer:(BOOL)animatingDrawer;
 
+-(void)setShowsStatusBarBackgroundView:(BOOL)showsDummyStatusBar;
+
 @end

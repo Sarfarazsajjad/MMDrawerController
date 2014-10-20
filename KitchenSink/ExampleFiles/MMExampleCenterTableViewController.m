@@ -381,4 +381,21 @@ typedef NS_ENUM(NSInteger, MMCenterViewControllerSection){
     [self.mm_drawerController bouncePreviewForDrawerSide:MMDrawerSideRight completion:nil];
 }
 
+
+#pragma mark Rotation
+-(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+ 
+    UIEdgeInsets inset = self.tableView.contentInset;
+    inset.top = self.navigationController.navigationBar.intrinsicContentSize.height + 20.0f;
+    
+    CGFloat adjustOffsetY = self.tableView.contentInset.top - inset.top;
+    
+    self.tableView.contentInset = inset;
+    
+    CGPoint offset = self.tableView.contentOffset;
+    offset.y += adjustOffsetY;
+    self.tableView.contentOffset = offset;
+}
+
 @end
