@@ -7,6 +7,7 @@
 //
 
 #import "MLSwipeViewController.h"
+#import "MLSwipeDrawerController.h"
 
 @interface MLSwipeViewController ()
 
@@ -24,6 +25,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - status bar
+- (BOOL)prefersStatusBarHidden
+{
+    return ((MLSwipeDrawerController*)self.mm_drawerController).statusBarShouldBeHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationSlide;
 }
 
 @end
