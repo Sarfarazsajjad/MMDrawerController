@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>BF2FE30DD30E807A424B26D63A15FEB4A29593EB</key>
-		<string>ssh://github.com/molon/MMDrawerController.git</string>
+		<string>github.com:molon/MMDrawerController.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>KitchenSink/MMDrawerControllerKitchenSink.xcodeproj/project.xcworkspace</string>
+	<string>KitchenSink/MMDrawerControllerKitchenSink.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>BF2FE30DD30E807A424B26D63A15FEB4A29593EB</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/molon/MMDrawerController.git</string>
+	<string>github.com:molon/MMDrawerController.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

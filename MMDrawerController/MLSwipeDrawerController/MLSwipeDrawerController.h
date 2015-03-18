@@ -18,4 +18,6 @@
 
 @property (nonatomic, assign, readonly) BOOL statusBarShouldBeHidden;
 
+- (void)setTwoSwipeGestureEnabled:(BOOL)enabled;
+
 @end

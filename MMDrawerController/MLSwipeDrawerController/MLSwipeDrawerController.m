@@ -32,6 +32,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setTwoSwipeGestureEnabled:(BOOL)enabled
+{
+    self.leftSwipeGestureRecognizer.enabled = enabled;
+    self.rightSwipeGestureRecognizer.enabled = enabled;
+}
+
 #pragma mark - 覆盖父级别初始化手势这块，不添加pan手势，添加swipe手势，这样就能去掉了默认的pan实现
 -(void)setupGestureRecognizers{
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureCallback:)];
